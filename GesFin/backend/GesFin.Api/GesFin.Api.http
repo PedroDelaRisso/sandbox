@@ -1,0 +1,6 @@
+@GesFin.Api_HostAddress = http://localhost:5191
+
+GET {{GesFin.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
