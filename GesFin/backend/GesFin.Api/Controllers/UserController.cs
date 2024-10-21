@@ -1,5 +1,6 @@
 namespace GesFin.Api.Controllers;
 
+using GesFin.Api.Models.Request;
 using GesFin.Domain.Models.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,10 +25,10 @@ public class UserController(IUserService userService) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add(User user)
+    public async Task<IActionResult> Add(Request<User> request)
     {
-        await _userService.Add(user);
-        return Created("v1/users", user);
+        await _userService.Add(request.Data);
+        return Created("v1/users", request.Data);
     }
 
     [HttpDelete("{id}")]
@@ -38,9 +39,9 @@ public class UserController(IUserService userService) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(User user)
+    public async Task<IActionResult> Update(Request<User> request)
     {
-        await _userService.Update(user);
+        await _userService.Update(request.Data);
         return Ok();
     }
 }
