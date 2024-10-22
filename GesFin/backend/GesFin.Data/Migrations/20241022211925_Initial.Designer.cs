@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GesFin.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241021184400_Inicial")]
-    partial class Inicial
+    [Migration("20241022211925_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,10 @@ namespace GesFin.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenantId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

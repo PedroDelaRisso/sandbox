@@ -1,0 +1,102 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend; dotnet build",
+			"label": "Build Backend",
+			"icon": {
+				"color": "terminal.ansiMagenta",
+				"id": "debug"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend/GesFin.Api; dotnet run",
+			"label": "Run Backend",
+			"icon": {
+				"color": "terminal.ansiMagenta",
+				"id": "server-process"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend/GesFin.Data; dotnet ef migrations add ${input:migrationName} -s ../GesFin.Api",
+			"label": "Create Migration",
+			"icon": {
+				"color": "terminal.ansiMagenta",
+				"id": "plus"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend/GesFin.Data; dotnet ef migrations remove -s ../GesFin.Api",
+			"label": "Remove Last Migration",
+			"icon": {
+				"color": "terminal.ansiMagenta",
+				"id": "trash"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend/GesFin.Data; dotnet ef database update ${input:migrationName} -s ../GesFin.Api",
+			"label": "Update Database",
+			"icon": {
+				"color": "terminal.ansiMagenta",
+				"id": "database"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "cd ${workspaceFolder}/backend/GesFin.Data; dotnet ef database drop -s ../GesFin.Api",
+			"label": "Drop Database",
+			"icon": {
+				"color": "terminal.ansiRed",
+				"id": "trash"
+			}
+		},
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/backend/GesFin.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/backend/GesFin.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/backend/GesFin.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+	],
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "migrationName",
+			"description": "The name of the migration to create",
+		}
+	]
+}
