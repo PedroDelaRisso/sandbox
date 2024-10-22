@@ -2,9 +2,11 @@ namespace GesFin.Api.Controllers;
 
 using GesFin.Api.Models.Request;
 using GesFin.Domain.Models.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class UserController(IUserService userService) : ControllerBase
 {
